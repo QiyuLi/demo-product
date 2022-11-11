@@ -1,0 +1,59 @@
+$WalmartBlue: #0071dc;
+$SparkYellow: #ffc220;
+
+#app {
+  font-family: Bogle, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+.navBar {
+  padding: 1em 2em;
+  background-color: $WalmartBlue;
+
+  .ant-page-header-heading-title {
+    color: white;
+  }
+
+  .ant-page-header-back svg {
+    color: white;
+  }
+}
+
+.searchBar {
+  padding: 2em 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $WalmartBlue;
+
+  .ant-btn-primary {
+    background-color: $SparkYellow;
+    color: black;
+    width: 100px;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.searchResult {
+  padding: 5em 5em;
+}
+
+.detailImageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+
+.recommendList {
+  padding-top: 2em;
+}
+
+.ant-card-hoverable {
+  padding: 1em;
+}
+
+ul {
+  list-style: none;
+}
