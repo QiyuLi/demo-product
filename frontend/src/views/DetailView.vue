@@ -33,7 +33,7 @@ onMounted(() => {
 
 <template>
   <main>
-    <a-page-header class="navBar" title="Back" @back="back" />
+    <a-page-header class="navBar" :title="item.name" @back="back" />
     <div class="searchResult">
       <ProductDetail :itemId="item.itemId" />
       <a-row class="recommendList">
