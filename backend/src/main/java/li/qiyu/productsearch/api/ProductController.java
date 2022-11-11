@@ -1,11 +1,12 @@
 package li.qiyu.productsearch.api;
 
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.websocket.server.PathParam;
 import java.io.*;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -19,8 +20,21 @@ public class ProductController {
     }
 
     @GetMapping(value = "/api-proxy/service/affil/product/v2/items/{id}")
-    public String product(@PathParam("id") String item) {
-        return asString("src/main/resources/static/lookup.json");
+    public String product(@PathVariable("id") String itemId) {
+        String json = asString("src/main/resources/static/lookup.json");
+        if (Strings.isNotEmpty(itemId)) {
+            try {
+                int suffix = Math.abs(itemId.hashCode() % 10) + 1;
+                System.out.println(suffix);
+                File lookup = new File("src/main/resources/static/lookup" + suffix + ".json");
+                if (lookup.isFile()) {
+                    json = asString(lookup.getPath());
+                }
+            } catch (Exception e) {
+                // ignore
+            }
+        }
+        return json;
     }
 
     @GetMapping(value = "/api-proxy/service/affil/product/v2/nbp")
